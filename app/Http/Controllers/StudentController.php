@@ -8,16 +8,31 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $students = Student::with('college')->get(); 
-        return view('students.index', compact('students'));
+        $search = $request->input('search');
+        $college_id = $request->input('college_id');
+
+        $colleges = College::pluck('name', 'id');
+
+        $students = Student::with('college')
+            ->when($college_id, function ($query, $college_id) {
+                return $query->where('college_id', $college_id);
+            })
+            ->get();
+
+        return view('students.index', compact('students', 'colleges'));
     }
+
 
     public function create()
     {
-        return view('students.create');
+        $student = new Student(); 
+        $colleges = College::orderBy('name')->pluck('name', 'id');
+        return view('students.create', compact('student', 'colleges'));
     }
+
+
 
     public function show($id) {
         $students = Student::find($id);
@@ -35,5 +50,21 @@ class StudentController extends Controller
         $students->update($request->all());
         return redirect()->route('students.index');
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:students,email', 
+            'phone' => 'required|regex:/^\d{8}$/', 
+            'dob' => 'required|date',  
+            'college_id' => 'required|exists:colleges,id',  
+        ]);
+        
+    
+        Student::create($request->all());
+        return redirect()->route('students.index')->with('message', 'Student has been added successfully');
+    }
+    
 
 }
