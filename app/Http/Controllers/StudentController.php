@@ -12,6 +12,8 @@ class StudentController extends Controller
     {
         $search = $request->input('search');
         $college_id = $request->input('college_id');
+        $sort = $request->input('sort', 'name'); 
+        $direction = $request->input('direction', 'asc'); 
 
         $colleges = College::pluck('name', 'id');
 
@@ -19,10 +21,13 @@ class StudentController extends Controller
             ->when($college_id, function ($query, $college_id) {
                 return $query->where('college_id', $college_id);
             })
+            ->orderBy($sort, $direction) 
             ->get();
 
         return view('students.index', compact('students', 'colleges'));
     }
+
+
 
 
     public function create()
