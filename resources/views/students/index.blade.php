@@ -270,15 +270,14 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <h2>Manage Students</h2>
-                            </div>
-                            <form action="{{ route('students.index') }}" method="GET" class="d-flex">
-                                <input type="text" name="search" class="form-control" placeholder="Search Cars" id="searchCars" value="{{ request('search') }}">
-                                <button type="submit" class="btn btn-primary ml-2">Search</button>
-                            </form>                            
+                                
+                            </div>                          
                         </div>
                     </div>
                     
                     <table class="table table-striped table-hover">
+                        @include('students._filter')
+                        
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

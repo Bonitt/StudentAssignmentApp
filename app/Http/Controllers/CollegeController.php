@@ -27,4 +27,22 @@ class CollegeController extends Controller
         $colleges->update($request->all());
         return redirect()->route('colleges.index');
     }
+
+    public function create()
+    {
+        $college = new College(); // Create an empty College instance
+        return view('colleges.create', compact('college'));
+    }
+
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|unique:colleges',
+            'address' => 'required', 
+        ]);
+    
+        College::create($request->all());
+        return redirect()->route('colleges.index')->with('message', 'College has been added successfully');
+    }
 }
