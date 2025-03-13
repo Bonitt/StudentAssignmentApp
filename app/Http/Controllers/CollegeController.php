@@ -30,7 +30,7 @@ class CollegeController extends Controller
 
     public function create()
     {
-        $college = new College(); // Create an empty College instance
+        $college = new College(); 
         return view('colleges.create', compact('college'));
     }
 
