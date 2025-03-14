@@ -263,6 +263,16 @@
 
     </head>
     <body>
+        @if(session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+
+
         <div class="container-xl">
             <div class="table-responsive">
                 <div class="table-wrapper">
@@ -311,6 +321,11 @@
                                 </td>
                             </tr>
                             @endforeach
+
+                            <form id="form-delete" method="POST" style="display: none">
+                                @method('DELETE')
+                                @csrf
+                              </form>
                         </tbody>
                     </table>
                 </div>
@@ -318,6 +333,27 @@
         </div>
     </body>
     
-
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+            let alertBox = document.querySelector('.alert');
+            if (alertBox) {
+                setTimeout(function () {
+                    let bsAlert = new bootstrap.Alert(alertBox);
+                    bsAlert.close(); 
+                }, 3000); 
+            }
+        });
+        document.querySelectorAll('.btn-delete').forEach((button)=> {
+            button.addEventListener('click', function(event){
+                event.preventDefault()
+                if(confirm("Are you sure?")){
+                    let action = this.getAttribute('href');
+                    let form = document.getElementById('form-delete')
+                    form.setAttribute('action', action)
+                    form.submit()
+                }        
+            })
+        })
+    </script>
 </html>
 @endsection

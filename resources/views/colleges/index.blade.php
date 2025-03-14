@@ -254,53 +254,90 @@
             }
         </style>
 </head>
+@if(session('message'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('message') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    
+@endif
 <div class="container-xl">
+    
+
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
                         <h2>Manage Colleges</h2>
-                    </div>
+                    </div>          
                     <div class="col-sm-6">
                         <a href="{{ route('colleges.create') }}" class="btn btn-success float-right">Add College</a>
-                    </div>
+                    </div>                
                 </div>
             </div>
             
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th>Actions</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($colleges as $index => $college)
-                        <tr>
-                            <th scope="row">{{ $index + 1 }}</th>
-                            <td>{{ $college->name }}</td>
-                            <td>{{ $college->address }}</td>
-                            <td>
-                                <a href="{{ route('colleges.show', $college->id) }}" class="show">
-                                    <i class="material-icons" data-toggle="tooltip" title="Show">visibility</i>
-                                </a>
-                                <a href="{{ route('colleges.edit', $college->id) }}" class="edit">
-                                    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-                                </a>
-                                <a href="{{ route('colleges.destroy', $college->id) }}" class="btn-delete delete">
-                                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                                </a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <th scope="row">{{ $index + 1 }}</th>
+                        <td>{{ $college->name }}</td>
+                        <td>{{ $college->address }}</td>
+                        <td>
+                            <a href="{{ route('colleges.show', $college->id) }}" class="show">
+                                <i class="material-icons" data-toggle="tooltip" title="Show">visibility</i>
+                            </a>
+                            <a href="{{ route('colleges.edit', $college->id) }}" class="edit">
+                                <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                            </a>
+                            <a href="{{ route('colleges.destroy', $college->id) }}" class="btn-delete delete">
+                                <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                            </a>
+                        </td>
+                    </tr>
                     @endforeach
-                </tbody>
-                
-            </table>
 
+                    <form id="form-delete" method="POST" style="display: none">
+                        @method('DELETE')
+                        @csrf
+                    </form>
+                </tbody>
+            </table>
         </div>
-    </div>
+    </div>        
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+            let alertBox = document.querySelector('.alert');
+            if (alertBox) {
+                setTimeout(function () {
+                    let bsAlert = new bootstrap.Alert(alertBox);
+                    bsAlert.close(); // Bootstrap method to close alert
+                }, 3000); // Alert disappears after 3 seconds
+            }
+        });
+    document.querySelectorAll('.btn-delete').forEach((button) => {
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            if(confirm("Are you sure you want to delete this college?")) {
+                let action = this.getAttribute('href');
+                let form = document.getElementById('form-delete');
+                form.setAttribute('action', action);
+                form.submit();
+            }
+        });
+    });
+</script>
+
 @endsection
