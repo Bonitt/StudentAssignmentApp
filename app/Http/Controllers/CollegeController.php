@@ -23,9 +23,9 @@ class CollegeController extends Controller
     }
 
     public function update($id, Request $request) {
-        $colleges = College::find($id);
-        $colleges->update($request->all());
-        return redirect()->route('colleges.index');
+        $college = College::find($id);
+        $college->update($request->all());
+        return redirect()->route('colleges.index')->with('message', 'College updated successfully');
     }
 
     public function create()
@@ -35,6 +35,8 @@ class CollegeController extends Controller
     }
 
 
+    
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -45,4 +47,12 @@ class CollegeController extends Controller
         College::create($request->all());
         return redirect()->route('colleges.index')->with('message', 'College has been added successfully');
     }
+    
+    public function destroy($id){
+        $college = College::find($id);
+        $college->delete();
+        return redirect()->route('colleges.index')->with('message', 'College deleted successfully');
+    }
+    
+    
 }

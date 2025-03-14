@@ -50,12 +50,6 @@ class StudentController extends Controller
         return view('students.edit', compact('student', 'colleges'));
     }
 
-    public function update($id, Request $request) {
-        $students = Student::find($id);
-        $students->update($request->all());
-        return redirect()->route('students.index');
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -65,11 +59,29 @@ class StudentController extends Controller
             'dob' => 'required|date',  
             'college_id' => 'required|exists:colleges,id',  
         ]);
-        
-    
+
         Student::create($request->all());
-        return redirect()->route('students.index')->with('message', 'Student has been added successfully');
+
+        return redirect()->route('students.index')->with('success', 'Student added successfully!');
     }
-    
+
+    public function update($id, Request $request)
+    {
+        $student = Student::findOrFail($id);
+        $student->update($request->all());
+
+        return redirect()->route('students.index')->with('success', 'Student updated successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $student = Student::findOrFail($id);
+        $student->delete();
+
+        return redirect()->route('students.index')->with('success', 'Student deleted successfully!');
+    }
+
+
+
 
 }
