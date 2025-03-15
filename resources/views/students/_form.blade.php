@@ -82,3 +82,12 @@
       white-space: nowrap;
   }
 </style>
+
+<!--
+// This is the same form as the colleges but for the students.
+// It contains the input fields for the student name, email, phone, date of birth and college.
+// It also contains the submit and cancel buttons that take you
+// to the index page of the students.
+// The college field is a dropdown that contains all the colleges that whichever the user
+// decides to select a college, the student will be associated with that college.
+-->

@@ -357,3 +357,13 @@
     </script>
 </html>
 @endsection
+
+<!--
+// This is the students index page.
+// It displays the list of students and along side each row,
+// there are actions that can be performed on the student.
+// The actions are show, edit and delete. Each action takes you
+// to their respective pages.
+// The page also contains a filter form that can be used to filter the students.
+// The page also contains an alert that is displayed when a student is created, updated or deleted.
+-->

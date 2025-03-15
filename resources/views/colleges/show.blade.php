@@ -120,3 +120,12 @@
         </div>
     </body>
 @endsection
+
+<!--
+// This is the show view for the college.
+// It displays the details of the college which in this case
+// are the name and address of the college.
+// It also contains the edit and cancel buttons that take you
+// to the edit page of the college and the index page of the college respectively.
+
+-->

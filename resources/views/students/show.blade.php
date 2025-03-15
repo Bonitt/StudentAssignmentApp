@@ -137,3 +137,9 @@
         </div>
     </body>
 @endsection
+
+<!---
+// This is the show page for the student.
+// It displays the details of the student.
+// It also contains the edit and cancel buttons that take you to the edit and index pages respectively.
+-->

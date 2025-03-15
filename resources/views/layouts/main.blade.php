@@ -65,3 +65,9 @@
     <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
+
+<!--
+// This is the main layout file for the application.
+// It contains the navigation bar that links to the colleges and students index pages.
+// This is displayed on every page of the application.
+-->

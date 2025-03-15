@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // This is the migration to create the students table
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('name');

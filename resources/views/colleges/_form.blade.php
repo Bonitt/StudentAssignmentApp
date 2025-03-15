@@ -31,3 +31,10 @@
         </div>
     </div>
 </div>
+<!--
+This is the form for creating and updating the college.
+It is included in the create and edit views of the college.
+It contains the input fields for the college name and address.
+It also contains the submit and cancel buttons that take you
+to the index page of the college.
+-->
