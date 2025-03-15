@@ -323,8 +323,8 @@
             if (alertBox) {
                 setTimeout(function () {
                     let bsAlert = new bootstrap.Alert(alertBox);
-                    bsAlert.close(); // Bootstrap method to close alert
-                }, 3000); // Alert disappears after 3 seconds
+                    bsAlert.close(); 
+                }, 3000); 
             }
         });
     document.querySelectorAll('.btn-delete').forEach((button) => {
@@ -341,3 +341,13 @@
 </script>
 
 @endsection
+
+<!--
+// This is the college index page.
+// It displays the list of colleges in a table.
+// Along each row it contains the name and address of the college.
+// It also contains the actions that can be performed on the college,
+// such as show, edit and delete.
+// It also contains a button to add a new college.
+// And at the bottom the script to delete a college.
+-->

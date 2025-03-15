@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class College extends Model
 {
 
+    // This is the model for the College table
     protected $fillable = ['name', 'address'];
 
 
@@ -15,6 +16,8 @@ class College extends Model
 
     public function students()
     {
+        // This is the relationship between the College and Student models
+        // in this case a college has many students
         return $this->hasMany(Student::class);
     }
 }

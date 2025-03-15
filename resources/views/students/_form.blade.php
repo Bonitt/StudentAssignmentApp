@@ -43,22 +43,27 @@
                       @enderror
                     </div>
                 
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      <label for="college">College</label>
-                      <select name="college_id" id="college" class="form-control @error('college_id') is-invalid @enderror" >
-                        <option value="" disabled>Choose a College...</option>
-                        @foreach($colleges as $id => $name)
-                          <option value="{{ $id }}" {{ old('college_id', $student->college_id) == $id ? 'selected' : '' }}>{{ $name }}</option>
-                        @endforeach
-                      </select>
-                      @error('college_id')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                      @enderror
-                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-12">
+                          <label for="college">College</label>
+                          <select name="college_id" id="college" class="form-control @error('college_id') is-invalid @enderror">
+                              <option value="" disabled>Choose a College...</option>
+                              @foreach($colleges as $id => $name)
+                                  <option value="{{ $id }}" title="{{ $name }}" {{ old('college_id', $student->college_id) == $id ? 'selected' : '' }}>
+                                      {{ Str::limit($name, 30, '...') }}
+                                  </option>
+                              @endforeach
+                          </select>
+                          @error('college_id')
+                              <div class="invalid-feedback">
+                                  {{ $message }}
+                              </div>
+                          @enderror
+                      </div>
                   </div>
+                  
+                  
+                  
               
                   <div class="d-flex ">
                     <button type="submit" class="btn btn-primary zoom-effect">Submit</button>
@@ -68,3 +73,21 @@
         </div>
     </div>
 </div>
+
+<style>
+  select.form-control {
+      max-width: 300px; 
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+  }
+</style>
+
+<!--
+// This is the same form as the colleges but for the students.
+// It contains the input fields for the student name, email, phone, date of birth and college.
+// It also contains the submit and cancel buttons that take you
+// to the index page of the students.
+// The college field is a dropdown that contains all the colleges that whichever the user
+// decides to select a college, the student will be associated with that college.
+-->

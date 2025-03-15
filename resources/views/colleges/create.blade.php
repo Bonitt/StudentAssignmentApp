@@ -263,3 +263,10 @@
 </body>
 </html>
 @endsection
+
+<!--
+// This is the form for creating and updating the college.
+// It is included in the create and edit views of the college.
+// It contains the input fields for the college name and address.
+// It includes the form that has the fields necessary to create a college.
+-->

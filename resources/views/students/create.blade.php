@@ -263,3 +263,8 @@
 </body>
 </html>
 @endsection
+
+<!--
+// This is the create view for the students.
+// It includes the form for creating a new student, just like the colleges create.blade.php.
+-->

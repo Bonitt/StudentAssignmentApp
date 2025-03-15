@@ -41,3 +41,11 @@
         </div>
     </div>
 </form>
+
+<!--
+// This is the filter form for the students.
+// It contains the sorting button for the student name which sorts students by name.
+// It also contains the dropdown for filtering students by college.
+// The 2 filters can be be used together to filter and sort students at the same time.
+// It also contains the add student button which takes you to the create student page.
+-->

@@ -266,3 +266,10 @@
 </body>
 </html>
 @endsection
+
+<!--
+// This is the edit view for the college.
+// Just like the create view, it includes the form for creating and updating the college.
+// And makes the method of the form to be PUT. Meaning it is for updating the college.
+// After the form is done it redirects to the index page of the colleges.
+-->
